@@ -52,7 +52,7 @@ export default class PersonDetails extends Component {
               <span>{gender}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Birth Year</span>
+              <span className="term">Birth Year!</span>
               <span>{birthYear}</span>
             </li>
             <li className="list-group-item">
