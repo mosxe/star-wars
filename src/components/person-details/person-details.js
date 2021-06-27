@@ -1,11 +1,14 @@
 ﻿import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
+import Spinner from '../spinner';
+import ErrorButton from '../error-button';
 import './person-details.css';
 
 export default class PersonDetails extends Component {
   swapiService = new SwapiService();
   state = {
-    person: null
+    person: null,
+    loading: true
   }
 
   componentDidMount() {
@@ -14,6 +17,9 @@ export default class PersonDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.personId !== prevProps.personId) {
+      // this.setState({
+      //   loading: true
+      // });
       this.updatePerson();
     }
   }
@@ -24,18 +30,27 @@ export default class PersonDetails extends Component {
       return;
     }
 
+    this.setState({
+      loading: true
+    });
+
     this.swapiService.getPerson(personId).then(person => {
       this.setState({
-        person
+        person: person,
+        loading: false
       })
     })
   }
   render() {
-
+    console.log('render component');
     if (!this.state.person) {
       return (
         <span>Selected a person from left list</span>
       )
+    }
+
+    if (this.state.loading) {
+      return <Spinner/>;
     }
 
     const { id, name, gender, birthYear, eyeColor } = this.state.person;
@@ -52,7 +67,7 @@ export default class PersonDetails extends Component {
               <span>{gender}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Birth Year!</span>
+              <span className="term">Birth Year</span>
               <span>{birthYear}</span>
             </li>
             <li className="list-group-item">
@@ -60,8 +75,11 @@ export default class PersonDetails extends Component {
               <span>{eyeColor}</span>
             </li>
           </ul>
+          <ErrorButton />
         </div>
+       
       </div>
+     
     )
   }
 }
