@@ -17,9 +17,6 @@ export default class PersonDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.personId !== prevProps.personId) {
-      // this.setState({
-      //   loading: true
-      // });
       this.updatePerson();
     }
   }
@@ -39,10 +36,10 @@ export default class PersonDetails extends Component {
         person: person,
         loading: false
       })
-    })
+    });
   }
+
   render() {
-    console.log('render component');
     if (!this.state.person) {
       return (
         <span>Selected a person from left list</span>
@@ -77,9 +74,7 @@ export default class PersonDetails extends Component {
           </ul>
           <ErrorButton />
         </div>
-       
       </div>
-     
     )
   }
 }
