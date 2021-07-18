@@ -60,13 +60,13 @@
     return  {
       id: this._extractId(starship),
       name: starship.name,
-      modal: starship.modal,
+      modal: starship.model,
       manufacturer: starship.manufacturer,
-      costInCreadits: starship.costInCreadits,
+      costInCreadits: starship.cost_in_credits,
       length: starship.length,
       crew: starship.crew,
       passengers: starship.passengers,
-      cargoCapacity: starship.cargoCapacity
+      cargoCapacity: starship.cargo_capacity
     }
   };
 
@@ -96,7 +96,5 @@
 const swapi = new SwapiService();
 
 swapi.getAllStarships().then((body)=> {
-  console.log(body);
 }).catch(er => {
-  console.log(er);
 })

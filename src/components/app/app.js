@@ -2,15 +2,13 @@
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import PeoplePage from '../people-page';
-import ErrorButton from '../error-button';
 import ErrorIndicator from '../error-indicator';
-import ItemList from '../item-list';
-import ItemDetails from '../item-details';
+import ItemDetails, {Record} from '../item-details';
 import SwapiService from '../../services/swapi-service';
 import './app.css';
 import ErrorBoundry from '../error-boundry';
 import Row from '../row';
+import ItemList from '../item-list';
 export default class App extends Component {
   swapiService = new SwapiService();
 
@@ -46,32 +44,44 @@ export default class App extends Component {
       <RandomPlanet/> :
       null;
 
-    const {getPerson, getStarship, getPersonImage, getStarshipImage, getPlanetImage} = this.swapiService;
+    const {getPerson, getStarship, getPersonImage, getStarshipImage
+      ,getPlanetImage, getAllPeople} = this.swapiService;
 
     const personDetails = (
       <ItemDetails 
         itemId={11}
         getData={getPerson}
-        getImageUrl={getPersonImage}
-      />
+        getImageUrl={getPersonImage}>
+        <Record field="gender" label="Gender"/>
+        <Record field="eyeColor" label="Eye Color"/>
+      </ItemDetails>
     );
 
     const starshipDetails = (
       <ItemDetails 
         itemId={5}
         getData={getStarship}
-        getImageUrl={getStarshipImage}
-      />
+        getImageUrl={getStarshipImage}>
+        <Record field="modal" label="Model"/>
+        <Record field="length" label="Length"/>
+        <Record field="costInCreadits" label="Cost"/>
+      </ItemDetails>
     );
 
     return (
       <ErrorBoundry>
         <div>
           <Header />
-          <Row
+          <ItemList
+            getData={getAllPeople}
+            onItemSelected={() => {}}>
+
+            { ({name}) => <span>{name}</span> }
+          </ItemList>
+          {/* <Row
             left={personDetails}
             right={starshipDetails}
-          />
+          /> */}
         </div>
       </ErrorBoundry>
     );
