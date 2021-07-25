@@ -12,7 +12,6 @@
 
   getAllPeople = async () => {
     const res = await this.getResource(`/people/`);
-    console.log(res)
     return res.results.map(this._transformPerson);
   };
 
