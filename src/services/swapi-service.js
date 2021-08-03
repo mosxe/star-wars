@@ -59,7 +59,7 @@
     return  {
       id: this._extractId(starship),
       name: starship.name,
-      modal: starship.model,
+      model: starship.model,
       manufacturer: starship.manufacturer,
       costInCreadits: starship.cost_in_credits,
       length: starship.length,

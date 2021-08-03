@@ -1,10 +1,10 @@
-﻿import {
-  PersonList, PlanetList, StarshipList
-} from './item-lists.js';
+﻿import PersonDetails from './person-details.js';
+import PlanetDetails from './planet-details.js';
+import StarshipDetails from './planet-details.js';
 
 import {
-  PersonDetails, PlanetDetails, StarshipDetails
-} from './details.js';
+  PersonList, PlanetList, StarshipList
+} from './item-lists.js';
 
 export {
   PersonList, PlanetList, StarshipList,
